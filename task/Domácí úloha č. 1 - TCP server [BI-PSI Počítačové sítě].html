@@ -1,0 +1,1092 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0050)https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>
+    Domácí úloha č. 1 - TCP server    [BI-PSI Počítačové sítě]
+  </title>
+
+  <meta name="generator" content="DokuWiki snapshot? unknown">
+<meta name="robots" content="index,follow">
+<meta name="date" content="2017-04-06T20:29:00+0200">
+<meta name="keywords" content="labs,task1">
+<link rel="search" type="application/opensearchdescription+xml" href="https://edux.fit.cvut.cz/courses/BI-PSI/lib/exe/opensearch.php" title="BI-PSI Počítačové sítě">
+<link rel="start" href="https://edux.fit.cvut.cz/courses/BI-PSI/">
+<link rel="contents" href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1?do=index" title="Index">
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="https://edux.fit.cvut.cz/courses/BI-PSI/feed.php">
+<link rel="alternate" type="application/rss+xml" title="Current Namespace" href="https://edux.fit.cvut.cz/courses/BI-PSI/feed.php?mode=list&amp;ns=labs">
+<link rel="alternate" type="text/html" title="Plain HTML" href="https://edux.fit.cvut.cz/courses/BI-PSI/_export/xhtml/labs/task1">
+<link rel="canonical" href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1">
+<link rel="stylesheet" media="all" type="text/css" href="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/css.php">
+<link rel="stylesheet" media="screen" type="text/css" href="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/css(1).php">
+<link rel="stylesheet" media="print" type="text/css" href="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/css(2).php">
+<script type="text/javascript" charset="utf-8"><!--//--><![CDATA[//><!--
+var NS='labs';var SIG=' --- //[[koutnja1@fit.cvut.cz|koutnja1]] 2017/05/02 14:57//';var JSINFO = {"id":"labs:task1","namespace":"labs"};
+//--><!]]></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/js.php"></script>
+<script type="text/x-mathjax-config;executed=true" charset="utf-8"><!--//--><![CDATA[//><!--
+//MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+//MathJax.Hub.Config({  TeX: { equationNumbers: {autoNumber: "all"} } });
+MathJax.Hub.Config({
+	tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+	TeX: { 
+		equationNumbers: {autoNumber: "AMS"},
+		extensions: ["AMSmath.js", "AMSsymbols.js"]
+	} 
+});
+
+//--><!]]></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/MathJax.js.stažený soubor"></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/usrmenu.js.stažený soubor"></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/indexmenu.js.stažený soubor"></script>
+<script type="text/javascript" charset="utf-8"><!--//--><![CDATA[//><!--
+var indexmenu_ID='labs/task1'
+//--><!]]></script>
+<script type="text/javascript" charset="utf-8"><!--//--><![CDATA[//><!--
+jQuery.noConflict();
+
+//--><!]]></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/jsapi"></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/results.js.stažený soubor"></script><script src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/saved_resource" type="text/javascript"></script><link href="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/ui+cs.css" type="text/css" rel="stylesheet"><script src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/format+cs,default+cs,ui+cs,corechart+cs.I.js.stažený soubor" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/anketa.js.stažený soubor"></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/voting.js.stažený soubor"></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/editing_template.js.stažený soubor"></script>
+<script type="text/javascript" charset="utf-8" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/harmonogram.js.stažený soubor"></script>
+
+  <link rel="shortcut icon" href="https://edux.fit.cvut.cz/courses/BI-PSI/lib/tpl/edux/images/favicon-cvut.ico">
+  <link rel="stylesheet" href="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/font-awesome.min.css">
+
+    <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/ga.js.stažený soubor" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+	var pageTracker = _gat._getTracker("UA-10844012-1");
+	pageTracker._trackPageview();
+} catch(err) {}
+</script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body cz-shortcut-listen="true"><div id="MathJax_Message" style="display: none;"></div>
+<div class="dokuwiki">
+  
+  <div class="stylehead">
+
+    <div class="header">
+      <div class="logo">
+        <a href="https://edux.fit.cvut.cz/courses/BI-PSI/" name="dokuwiki__top" id="dokuwiki__top" accesskey="h" title="[ALT+H]">BI-PSI Počítačové sítě</a>      </div>
+      <div class="tagline">
+               </div>
+      <div class="password_expiration">
+        	  <div class="normal">
+	    <span>Platnost vašeho <a class="urlextern" href="http://intranet.cvut.cz/informace-pro-studenty/is/uzivatele-a-pristup/heslo-cvut">HESLA ČVUT</a> vyprší</span> <strong>05.08.2017</strong>
+	  </div>
+	      </div>
+      <div class="pagename">
+        [[<a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1?do=backlink">labs:task1</a>]]
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+
+    
+    <div class="bar" id="bar__top">
+      <div class="bar-left" id="bar__topleft">
+                <form class="button btn_revs" method="get" action="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1"><div class="no"><input type="hidden" name="do" value="revisions"><input type="submit" value="Starší verze" class="button" accesskey="o" title="Starší verze [O]"></div></form>      </div>
+
+      <div class="bar-right" id="bar__topright">
+        <form class="button btn_recent" method="get" action="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1"><div class="no"><input type="hidden" name="do" value="recent"><input type="submit" value="Poslední úpravy" class="button" accesskey="r" title="Poslední úpravy [R]"></div></form>        <form action="https://edux.fit.cvut.cz/courses/BI-PSI/" accept-charset="utf-8" class="search" id="dw__search"><div class="no"><input type="hidden" name="do" value="search"><input type="text" id="qsearch__in" accesskey="f" name="id" class="edit" title="[F]"><input type="submit" value="Hledat" class="button" title="Hledat"><div id="qsearch__out" class="ajax_qsearch JSpopup" style="display: none;"></div></div></form>&nbsp;
+	
+	<script src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/integration_button.js.stažený soubor" type="text/javascript"></script>		<style type="text/css">            @font-face {                font-family: 'icomoon';                src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SDTQAAAC8AAAAYGNtYXAQS+BrAAABHAAAAExnYXNwAAAAEAAAAWgAAAAIZ2x5ZhYQkjoAAAFwAAACNGhlYWQFOCztAAADpAAAADZoaGVhB8IDxgAAA9wAAAAkaG10eAYAAAAAAAQAAAAAFGxvY2EAKAEuAAAEFAAAAAxtYXhwAA8AvwAABCAAAAAgbmFtZVcZpu4AAARAAAABRXBvc3QAAwAAAAAFiAAAACAAAwQAAZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADwCgPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAACAAAAAwAAABQAAwABAAAAFAAEADgAAAAKAAgAAgACAAEAIPAK//3//wAAAAAAIPAK//3//wAB/+MP+gADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAACQAAAEkEAANuABQAKQA+AFMAaAB9AJIApwC8AAAlFRQHBisBIicmPQE0NzY7ATIXFhURFRQHBisBIicmPQE0NzY7ATIXFhUBFRQHBisBIicmPQE0NzY7ATIXFhUBFRQHBisBIicmPQE0NzY7ATIXFhUBFRQHBisBIicmPQE0NzY7ATIXFhUBFRQHBisBIicmPQE0NzY7ATIXFhUBFRQHBisBIicmPQE0NzY7ATIXFhUBFRQHBisBIicmPQE0NzY7ATIXFhURFRQHBisBIicmPQE0NzY7ATIXFhUBJRAQF7cXEBAQEBe3FxAQEBAXtxcQEBAQF7cXEBABbRAQF7YXEBAQEBe2FxAQ/pMQEBe3FxAQEBAXtxcQEAFtEBAXthcQEBAQF7YXEBABbhAQF7cXEBAQEBe3FxAQ/pIQEBe2FxAQEBAXthcQEAFuEBAXtxcQEBAQF7cXEBAQEBe3FxAQEBAXtxcQEO5uFxAQEBAXbhcQEBAQFwEkbRcQEBAQF20XEBAQEBf+3G4XEBAQEBduFxAQEBAXAkluFxAQEBAXbhcQEBAQF/7bbRcQEBAQF20XEBAQEBf+3G4XEBAQEBduFxAQEBAXAkluFxAQEBAXbhcQEBAQF/7bbRcQEBAQF20XEBAQEBcBJW4XEBAQEBduFxAQEBAXAAAAAQAAAAEAAP69X6pfDzz1AAsEAAAAAADRDPRBAAAAANEM9EEAAAAABAADbgAAAAgAAgAAAAAAAAABAAADwP/AAAAEAAAAAAAEAAABAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAAAKABQAHgEaAAEAAAAFAL0ACQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAOAK4AAQAAAAAAAQAOAAAAAQAAAAAAAgAOAEcAAQAAAAAAAwAOACQAAQAAAAAABAAOAFUAAQAAAAAABQAWAA4AAQAAAAAABgAHADIAAQAAAAAACgA0AGMAAwABBAkAAQAOAAAAAwABBAkAAgAOAEcAAwABBAkAAwAOACQAAwABBAkABAAOAFUAAwABBAkABQAWAA4AAwABBAkABgAOADkAAwABBAkACgA0AGMAaQBjAG8AbQBvAG8AbgBWAGUAcgBzAGkAbwBuACAAMQAuADAAaQBjAG8AbQBvAG8Abmljb21vb24AaQBjAG8AbQBvAG8AbgBSAGUAZwB1AGwAYQByAGkAYwBvAG0AbwBvAG4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=) format('truetype'),                url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAAX0AAsAAAAABagAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAABCAAAAGAAAABgDxINNGNtYXAAAAFoAAAATAAAAEwQS+BrZ2FzcAAAAbQAAAAIAAAACAAAABBnbHlmAAABvAAAAjQAAAI0FhCSOmhlYWQAAAPwAAAANgAAADYFOCztaGhlYQAABCgAAAAkAAAAJAfCA8ZobXR4AAAETAAAABQAAAAUBgAAAGxvY2EAAARgAAAADAAAAAwAKAEubWF4cAAABGwAAAAgAAAAIAAPAL9uYW1lAAAEjAAAAUUAAAFFVxmm7nBvc3QAAAXUAAAAIAAAACAAAwAAAAMEAAGQAAUAAAKZAswAAACPApkCzAAAAesAMwEJAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAQAAA8AoDwP/AAEADwABAAAAAAQAAAAAAAAAAAAAAIAAAAAAAAgAAAAMAAAAUAAMAAQAAABQABAA4AAAACgAIAAIAAgABACDwCv/9//8AAAAAACDwCv/9//8AAf/jD/oAAwABAAAAAAAAAAAAAAABAAH//wAPAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAkAAABJBAADbgAUACkAPgBTAGgAfQCSAKcAvAAAJRUUBwYrASInJj0BNDc2OwEyFxYVERUUBwYrASInJj0BNDc2OwEyFxYVARUUBwYrASInJj0BNDc2OwEyFxYVARUUBwYrASInJj0BNDc2OwEyFxYVARUUBwYrASInJj0BNDc2OwEyFxYVARUUBwYrASInJj0BNDc2OwEyFxYVARUUBwYrASInJj0BNDc2OwEyFxYVARUUBwYrASInJj0BNDc2OwEyFxYVERUUBwYrASInJj0BNDc2OwEyFxYVASUQEBe3FxAQEBAXtxcQEBAQF7cXEBAQEBe3FxAQAW0QEBe2FxAQEBAXthcQEP6TEBAXtxcQEBAQF7cXEBABbRAQF7YXEBAQEBe2FxAQAW4QEBe3FxAQEBAXtxcQEP6SEBAXthcQEBAQF7YXEBABbhAQF7cXEBAQEBe3FxAQEBAXtxcQEBAQF7cXEBDubhcQEBAQF24XEBAQEBcBJG0XEBAQEBdtFxAQEBAX/txuFxAQEBAXbhcQEBAQFwJJbhcQEBAQF24XEBAQEBf+220XEBAQEBdtFxAQEBAX/txuFxAQEBAXbhcQEBAQFwJJbhcQEBAQF24XEBAQEBf+220XEBAQEBdtFxAQEBAXASVuFxAQEBAXbhcQEBAQFwAAAAEAAAABAAD+vV+qXw889QALBAAAAAAA0Qz0QQAAAADRDPRBAAAAAAQAA24AAAAIAAIAAAAAAAAAAQAAA8D/wAAABAAAAAAABAAAAQAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAACAAAABAAAAAAAAAAACgAUAB4BGgABAAAABQC9AAkAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADgAAAAEAAAAAAAIADgBHAAEAAAAAAAMADgAkAAEAAAAAAAQADgBVAAEAAAAAAAUAFgAOAAEAAAAAAAYABwAyAAEAAAAAAAoANABjAAMAAQQJAAEADgAAAAMAAQQJAAIADgBHAAMAAQQJAAMADgAkAAMAAQQJAAQADgBVAAMAAQQJAAUAFgAOAAMAAQQJAAYADgA5AAMAAQQJAAoANABjAGkAYwBvAG0AbwBvAG4AVgBlAHIAcwBpAG8AbgAgADEALgAwAGkAYwBvAG0AbwBvAG5pY29tb29uAGkAYwBvAG0AbwBvAG4AUgBlAGcAdQBsAGEAcgBpAGMAbwBtAG8AbwBuAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) format('woff');                font-weight: normal;                font-style: normal;            }            [class^="icon-"], [class*=" icon-"] {                font-family: 'icomoon';                speak: none;                font-style: normal;                font-weight: normal;                font-variant: normal;                text-transform: none;                line-height: 1;                -webkit-font-smoothing: antialiased;                -moz-osx-font-smoothing: grayscale;            }            .icon-th:before {                content: "\f00a";            }			.integration-bar {                display: -webkit-box;                display: -o-flex;                display: -moz-box;                display: -ms-flexbox;                display: -webkit-flex;                display: flex;                                -webkit-flex-flow: row wrap;                -moz-flex-flow: row wrap;                -ms-flex-flow: row wrap;                -o-flex-flow: row wrap;                flex-flow: row wrap;                                -webkit-justify-content: center;                -moz-justify-content: center;                -ms-justify-content: center;                -o-justify-content: center;                justify-content: center;			                    position: relative;                background: #FAFAFA;                border: 0.1em solid #EEEEEE;                position: absolute;                padding: 0.6em;                width: 27em;                                font-size: 1em;                box-shadow: -0.3em 0.3em 0.5em #aaa;            }            .integration-bar > div.arrow {                position:absolute;                top: -1em;                left:50%;                margin-left:-1em;                width:0;                height:0;                border-left: 1em solid transparent;                border-right: 1em solid transparent;                border-bottom: 1em solid #eee;            }            .tile {                -webkit-flex: 0 1 auto;                -moz-flex: 0 1 auto;                -ms-flex: 0 1 auto;                -o-flex: 0 1 auto;                flex: 0 1 auto;                                border: 0.1em solid transparent;                width: 8em;                font-family: sans-serif;                margin: 0.2em;                padding: 1em;                text-decoration: none;                color: #696969;                vertical-align:top;            }            .tile:hover {                border: 0.1em solid #eee            }            .tile > span {                display: block;            }            .tile > span.icon {                text-align: center;                font-size: 2em;            }            .tile > span.icon span.tile-img {                overflow:hidden;            }            .tile > span.icon span.tile-img img {                vertical-align: middle;                max-height: 1em;            }            .tile > span.title {                padding: 0.8em 0 0 0;                text-align: center;            }		</style>	
+	<script type="text/javascript">/*<![CDATA[*/
+		jQuery(document).ready(function () {
+			//jQuery('.btn_integrationButton input[type="submit"]').integrationButton({
+			jQuery('.integration-button').integrationButton({
+		                dataUrl: 'https://ict.fit.cvut.cz/integration/edux.jsonp',
+                		locale: "cs"
+			});
+        	});
+	/*!]]>*/</script>
+	<div class="abutton integration-button"><span><i class="icon-th"></i></span></div>
+        <form class="button btn_logout" method="get" action="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1"><div class="no"><input type="hidden" name="do" value="logout"><input type="hidden" name="sectok" value="26d801f63971c251c1c66dddd98a09e7"><input type="submit" value="Odhlásit se" class="button" title="Odhlásit se"></div></form>      </div>
+
+      <div class="clearer"></div>
+    </div>
+
+        <div class="breadcrumbs">
+      <span class="bchead">Historie:</span> <span class="bcsep">»</span> <a href="https://edux.fit.cvut.cz/courses/BI-PSI/lectures/start" class="breadcrumbs" title="lectures:start">Seznam témat a materiály</a> <span class="bcsep">»</span> <a href="https://edux.fit.cvut.cz/courses/BI-PSI/tutorials/start" class="breadcrumbs" title="tutorials:start">Cvičení</a> <span class="bcsep">»</span> <a href="https://edux.fit.cvut.cz/courses/BI-PSI/classification/student/koutnja1/start" class="breadcrumbs" title="classification:student:koutnja1:start">Koutný Jan</a> <span class="bcsep">»</span> <a href="https://edux.fit.cvut.cz/courses/BI-PSI/classification/start" class="breadcrumbs" title="classification:start">Hodnocení</a> <span class="bcsep">»</span> <a href="https://edux.fit.cvut.cz/courses/BI-PSI/seminars/04/start" class="breadcrumbs" title="seminars:04:start">Testy prvočíselnosti - Rabin-Millerův test, RSA, RSA-CRT</a> <span class="bcsep">»</span> <a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/05/start" class="breadcrumbs" title="labs:05:start">5. Laboratoř - OpenSSL: Použití certifikátů v programu</a> <span class="bcsep">»</span> <a href="https://edux.fit.cvut.cz/courses/BI-PSI/start" class="breadcrumbs" title="start">BI-PSI - Počítačové sítě</a> <span class="bcsep">»</span> <a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/start" class="breadcrumbs" title="labs:start">Laboratorní cvičení</a> <span class="bcsep">»</span> <span class="curid"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1" class="breadcrumbs" title="labs:task1">Domácí úloha č. 1 - TCP server</a></span>          </div>
+    
+        <div class="breadcrumbs">
+      <span class="bchead">Umístění: </span><a href="https://edux.fit.cvut.cz/courses/BI-PSI/start" title="start">BI-PSI - Počítačové sítě</a> » <a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/start" title="labs:start">Laboratorní cvičení</a> » <a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1" title="labs:task1">Domácí úloha č. 1 - TCP server</a>    </div>
+    
+  </div>
+  
+  
+  <div id="sidebar">
+
+
+<h2><a name="bi-psi" id="bi-psi">BI-PSI</a></h2>
+<div class="level2">
+<ul>
+<li class="level1"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/classification/student/koutnja1/start" class="wikilink1" title="classification:student:koutnja1:start">Studijní výsledky</a></li>
+<li class="level1"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/student/koutnja1/start" class="wikilink2" title="student:koutnja1:start" rel="nofollow">Osobní namespace</a></li>
+</ul>
+
+</div>
+<!-- SECTION "BI-PSI" [13-57] -->
+<h2><a name="obsah" id="obsah">Obsah</a></h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li">
+ <a href="https://edux.fit.cvut.cz/courses/BI-PSI/start" class="wikilink1" title="start">Hlavní stránka</a>
+</div></li>
+</ul>
+
+
+<div>
+
+<ul class="idx">
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/av/start" class="indexmenu_idx_head">A/V záznam</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/parttime/start" class="indexmenu_idx_head">Kombinované studium</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/annotation/start" class="indexmenu_idx_head">Anotace</a></div></li>
+<li class="open"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/classification/start" class="indexmenu_idx_head">Hodnocení</a></div>
+<ul class="idx">
+<li class="level2"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/classification/anketa" class="wikilink1" title="classification:anketa">Hodnocení výuky</a></div></li>
+</ul>
+</li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/en/start" class="indexmenu_idx_head">BIE-PSI - Computer Networks</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/start" class="indexmenu_idx_head">Laboratorní cvičení</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/lectures/start" class="indexmenu_idx_head">Přednášky</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/seminars/start" class="indexmenu_idx_head">Prosemináře</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/student?idx=student" class="indexmenu_idx">student</a></div></li>
+<li class="level1"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/priklady" class="wikilink1" title="priklady">TCP and UDP examples</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/teacher/start" class="indexmenu_idx_head">Učitelé</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/team/start" class="indexmenu_idx_head">Týmy</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/tutorials?idx=tutorials" class="indexmenu_idx">tutorials</a></div></li>
+<li class="closed"><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/vyuka?idx=vyuka" class="indexmenu_idx">vyuka</a></div></li></ul>
+</div>
+
+</div>
+<!-- SECTION "Obsah" [58-] --><div class="funding">
+<p>
+<a href="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/fetch.php" class="media" title="http://edux.fit.cvut.cz/_media/oppa.png"><img src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/fetch.php" class="media" title="&#39;OPPA/PRAHA/EU&#39;" alt="&#39;OPPA/PRAHA/EU&#39;"></a>
+</p>
+
+<p>
+Příprava studijního programu Informatika je podporována projektem financovaným z <a href="http://www.esfcr.cz/" class="urlextern" target="_blank" title="http://www.esfcr.cz/" rel="nofollow">Evropského sociálního fondu</a> a rozpočtu <a href="http://www.praha.eu/" class="urlextern" target="_blank" title="http://www.praha.eu/" rel="nofollow"> hlavního města Prahy</a>.
+</p>
+
+<p>
+Praha &amp; EU: Investujeme do vaší budoucnosti
+</p>
+</div></div>    <div class="page_with_sidebar">
+  
+<div class="plugin_translation"><span>Překlady této stránky:</span> <ul>  <li><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI//labs/task1" class="wikilink1" title="česky">cs</a></div></li>  <li><div class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI//en/labs/task1" class="wikilink2" title="English">en</a></div></li></ul></div>
+    <!-- wikipage start -->
+    <!-- TOC START -->
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header" style="cursor: pointer;"><span id="toc__toggle" class="toc_close" style="cursor: pointer;"><span>−</span></span>Obsah</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="level1"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#domaci_uloha_c_1_-_tcp_server" class="toc">Domácí úloha č. 1 - TCP server</a></span></div>
+<ul class="toc">
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#anotace" class="toc">Anotace</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#zadani" class="toc">Zadání</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#detailni_specifikace" class="toc">Detailní specifikace</a></span></div>
+<ul class="toc">
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#autentizace" class="toc">Autentizace</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#pohyb_robota_k_cili" class="toc">Pohyb robota k cíli</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#vyzvednuti_tajneho_vzkazu" class="toc">Vyzvednutí tajného vzkazu</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#dobijeni" class="toc">Dobíjení</a></span></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#chybove_situace" class="toc">Chybové situace</a></span></div>
+<ul class="toc">
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#chyba_pri_autentizaci" class="toc">Chyba při autentizaci</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#syntakticka_chyba" class="toc">Syntaktická chyba</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#logicka_chyba" class="toc">Logická chyba</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#timeout" class="toc">Timeout</a></span></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#specialni_situace" class="toc">Speciální situace</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#optimalizace_serveru" class="toc">Optimalizace serveru</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#ukazka_komunikace" class="toc">Ukázka komunikace</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#testovani" class="toc">Testování</a></span></div>
+<ul class="toc">
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#tester" class="toc">Tester</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#prehled_testu" class="toc">Přehled testů</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#ke_stazeni" class="toc">Ke stažení</a></span></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#pozadavky_na_reseni" class="toc">Požadavky na řešení</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#odevzdani" class="toc">Odevzdání</a></span></div>
+<ul class="toc">
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#nahrani_na_archivacni_server" class="toc">Náhrání na archivační server</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#osobni_prezentace" class="toc">Osobní prezentace</a></span></div></li></ul>
+</li></ul>
+</li></ul>
+</div>
+</div>
+<!-- TOC END -->
+
+
+
+<h1><a name="domaci_uloha_c_1_-_tcp_server" id="domaci_uloha_c_1_-_tcp_server">Domácí úloha č. 1 - TCP server</a></h1>
+<div class="level1">
+
+</div>
+
+<h2><a name="anotace" id="anotace">Anotace</a></h2>
+<div class="level2">
+
+<p>
+Cílem úlohy je vytvořit vícevláknový server pro TCP/IP komunikaci a implementovat komunikační protokol podle dané specifikace.
+</p>
+
+<p>
+</p><p></p><div class="noteimportant">Před začátkem implementace si prostudujte <span class="curid"><a href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#odevzdani" class="wikilink1" title="labs:task1">poznámky k odevzdání</a></span>! Ušetříte si budoucí komplikace.
+</div><p></p>
+<p></p>
+
+</div>
+
+<h2><a name="zadani" id="zadani">Zadání</a></h2>
+<div class="level2">
+
+<p>
+Vytvořte server pro automatické řízení vzdálených robotů. Roboti se sami přihlašují k serveru a ten je navádí do cílové lokace v souřadnicové síti. Pro účely testování každý robot startuje na náhodných souřadnicích a jeho cíl se nachází vždy na souřadnici (0,0). Cesta končí vyzvednutím tajného vzkazu, který se nachází právě na cílové souřadnici. Server zvládne komunikovat z více roboty najednou a implementuje bezchybně komunikační protokol.
+</p>
+
+</div>
+
+<h2><a name="detailni_specifikace" id="detailni_specifikace">Detailní specifikace</a></h2>
+<div class="level2">
+
+<p>
+Komunikace mezi serverem a roboty je realizována plně textovým protokolem. Každý příkaz je zakončen dvojicí speciálních symbolů „\r\n“. Server musí dodržet komunikační protokol do detailu přesně, ale musí počítat s nedokonalými firmwary robotů (viz sekce Speciální situace). Maximální délka zprávy od robota je 100 znaků. 
+</p>
+
+<p>
+Zprávy serveru:
+
+</p>
+<table class="inline">
+	<tbody><tr class="row0">
+		<th class="col0"> Název </th><th class="col1"> Zpráva </th><th class="col2"> Popis </th>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> SERVER_USER </td><td class="col1"> 100 LOGIN\r\n </td><td class="col2"> Výzva k zadání uživatelského jména </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> SERVER_PASSWORD </td><td class="col1"> 101 PASSWORD\r\n </td><td class="col2"> Výzva k zadání uživatelského hesla </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> SERVER_MOVE </td><td class="col1"> 102 MOVE\r\n </td><td class="col2"> Příkaz pro pohyb o jedno pole vpřed </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> SERVER_TURN_LEFT </td><td class="col1"> 103 TURN LEFT\r\n </td><td class="col2"> Příkaz pro otočení doleva </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> SERVER_TURN_RIGHT </td><td class="col1"> 104 TURN RIGHT\r\n </td><td class="col2"> Příkaz pro otočení doprava </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> SERVER_PICK_UP </td><td class="col1"> 105 GET MESSAGE\r\n </td><td class="col2"> Příkaz pro vyzvednutí zprávy </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> SERVER_OK </td><td class="col1"> 200 OK\r\n </td><td class="col2"> Kladné potvrzení </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> SERVER_LOGIN_FAILED </td><td class="col1"> 300 LOGIN FAILED\r\n </td><td class="col2"> Chybné heslo </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0"> SERVER_SYNTAX_ERROR </td><td class="col1"> 301 SYNTAX ERROR\r\n </td><td class="col2"> Chybná syntaxe zprávy </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0"> SERVER_LOGIC_ERROR </td><td class="col1"> 302 LOGIC ERROR\r\n </td><td class="col2"> Zpráva odeslaná ve špatné situaci </td>
+	</tr>
+</tbody></table>
+
+<p>
+
+Zprávy klienta:
+
+</p>
+<table class="inline">
+	<tbody><tr class="row0">
+		<th class="col0"> Název </th><th class="col1"> Zpráva </th><th class="col2"> Popis </th><th class="col3"> Ukázka </th><th class="col4"> Maximální délka </th>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> CLIENT_USER </td><td class="col1"> &lt;user name&gt;\r\n </td><td class="col2"> Zpráva s uživatelským jménem. Jméno může být libovolná sekvence znaků kromě kromě dvojice \r\n.</td><td class="col3"> Umpa_Lumpa\r\n</td><td class="col4"> 100 </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> CLIENT_PASSWORD </td><td class="col1"> &lt;password&gt;\r\n </td><td class="col2"> Zpráva s uživatelským heslem. Ověření hesla je popsáno v sekci autentizace. Zpráva může obsahovat maximálně 5 čísel a ukončovací sekvenci \r\n. </td><td class="col3"> 1009\r\n </td><td class="col4"> 7 </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> CLIENT_CONFIRM </td><td class="col1"> OK &lt;x&gt; &lt;y&gt;\r\n </td><td class="col2"> Potvrzení o provedení pohybu, kde <em>x</em> a <em>y</em> jsou souřadnice robota po provedení pohybového příkazu. </td><td class="col3"> OK -3 -1\r\n </td><td class="col4"> 12 </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> CLIENT_RECHARGING </td><td class="col1"> RECHARGING\r\n </td><td class="col2"> Robot se začal dobíjet a přestal reagovat na zprávy. </td><td class="col3"> </td><td class="col4"> 12 </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> CLIENT_FULL_POWER </td><td class="col1"> FULL POWER\r\n </td><td class="col2"> Robot doplnil energii a opět příjímá příkazy. </td><td class="col3"> </td><td class="col4"> 12 </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> CLIENT_MESSAGE </td><td class="col1"> &lt;text&gt;\r\n </td><td class="col2"> Text vyzvednutého tajného vzkazu. Může obsahovat jakékoliv znaky kromě ukončovací sekvence \r\n. </td><td class="col3"> Haf!\r\n </td><td class="col4"> 100 </td>
+	</tr>
+</tbody></table>
+
+<p>
+
+Časové konstanty:
+
+</p>
+<table class="inline">
+	<tbody><tr class="row0">
+		<th class="col0"> Název </th><th class="col1"> Hodota [s] </th><th class="col2"> Popis </th>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> TIMEOUT </td><td class="col1"> 1 </td><td class="col2"> Server i klient očekávají od protistrany odpověď po dobu tohoto intervalu. </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> TIMEOUT_RECHARGING </td><td class="col1"> 5 </td><td class="col2"> Časový interval, během kterého musí robot dokončit dobíjení. </td>
+	</tr>
+</tbody></table>
+
+<p>
+
+Komunikaci s roboty lze rozdělit do několika fází:
+</p>
+
+</div>
+
+<h3><a name="autentizace" id="autentizace">Autentizace</a></h3>
+<div class="level3">
+
+<p>
+Každý robot je po přihlášení vyzván serverem k odeslání uživatelského jména (SERVER_USER) a posléze i hesla. Uživatelské jméno múže být libovolná sekvence znaků. Heslo je textová reprezentace součtu <acronym title="American Standard Code for Information Interchange">ASCII</acronym> kódů všech znaků užívatelského jména. Server zkontroluje správnost zadaných údajů až poté, co obdrží uživatelské jméno i heslo. Pokud heslo není správně, informuje o tom robota a ukončí komunikaci. 
+</p>
+<pre class="code">Klient                  Server
+------------------------------------------
+                &lt;---    SERVER_USER
+CLIENT_USER     ---&gt;
+                &lt;---    SERVER_PASSWORD
+CLIENT_PASSWORD ---&gt;
+                &lt;---    SERVER_OK
+                          nebo
+                        SERVER_LOGIN_FAILED
+                  .
+                  .
+                  .</pre>
+<p>
+Server dopředu nezná uživatelská jména a hesla robotů. Roboti proto mohou zvolit jakékoliv jméno, ale musí k němu vytvořit správné heslo. Heslem je dekadické číslo v textové reprezentaci. Číslo je součtem všech <acronym title="American Standard Code for Information Interchange">ASCII</acronym> hodnot znaků obsažených v uživatelském jménu (bez ukončovací sekvence znaků). Zde je ukázka výpočtu hesla:
+</p>
+<pre class="code">Uživatelské jméno: Haf
+
+ASCII reprezentace: 72 97 102
+
+Výsledné heslo je text: 271</pre>
+</div>
+
+<h3><a name="pohyb_robota_k_cili" id="pohyb_robota_k_cili">Pohyb robota k cíli</a></h3>
+<div class="level3">
+
+<p>
+Robot se může pohybovat pouze rovně a je schopen provést otočení na místě doprava i doleva. Po každém příkazu k pohybu odešle potvrzení, jehož součástí je i aktuální souřadnice. Pozor - roboti jsou v provozu již dlouhou dobu, takže začínají chybovat. Občas se stane, že se nepohnou kupředu. Tuto situaci je třeba detekovat a správně na ni zareagovat! Pozice robota není serveru na začátku komunikace známa. Server musí zjistit polohu robota (pozici a směr) pouze z jeho odpovědí. Z důvodů prevence proti nekonečnému bloudění robota v prostoru, má každý robot omezený počet pohybů (posunutí vpřed i otočení). Počet pohybů by měl být dostatečný pro rozumný přesun robota k cíli. Následuje ukázka komunkace. Server nejdříve pohne dvakrát robotem kupředu, aby detekoval jeho aktuální stav a po té jej navádí směrem k cílovým souřadnicím.
+</p>
+<pre class="code">Klient                  Server
+------------------------------------------
+                  .
+                  .
+                  .
+                &lt;---    SERVER_MOVE
+CLIENT_CONFIRM  ---&gt;
+                &lt;---    SERVER_MOVE
+CLIENT_CONFIRM  ---&gt;
+                &lt;---    SERVER_MOVE
+                          nebo
+                        SERVER_TURN_LEFT
+                          nebo
+                        SERVER_TURN_RIGHT
+                  .
+                  .
+                  .</pre>
+<p>
+Tuto částo komunikace nelze přeskočit, robot očekává alespoň jeden pohybový příkaz - SERVER_MOVE, SERVER_TURN_LEFT nebo SERVER_TURN_RIGHT!
+</p>
+
+<p>
+Pozor! Roboti občas chybují a nedaří se jim vykonat pohyb vpřed. V případě, že se nepohnou z místa, je nutné to detekovat a poslat příkaz k pohybu ještě jednou. Při rotaci roboti nechybují.
+</p>
+
+</div>
+
+<h3><a name="vyzvednuti_tajneho_vzkazu" id="vyzvednuti_tajneho_vzkazu">Vyzvednutí tajného vzkazu</a></h3>
+<div class="level3">
+
+<p>
+Poté, co robot dosáhne cílové souřadnice (0,0), požádá server robota o vyzvednutí vzkazu. Pokud je robot požádán o vyzvednutí vzkazu a nenachází se na cílové souřadnici, spustí se autodestrukce robota a komunikace se serverem je přerušena. V opačném případě pošle serveru text vyzvednutého tajného vzkazu a server potvrdí příjem. Poté klient i server ukončí spojení.
+</p>
+<pre class="code">Klient                  Server
+------------------------------------------
+                  .
+                  .
+                  .
+                &lt;---    SERVER_PICK_UP
+CLIENT_MESSAGE  ---&gt;
+                &lt;---    SERVER_OK</pre>
+</div>
+
+<h3><a name="dobijeni" id="dobijeni">Dobíjení</a></h3>
+<div class="level3">
+
+<p>
+Každý z robotů má omezený zdroj energie. Pokud mu začne docházet baterie, oznámí to serveru a poté se začne sám ze solárního panelu dobíjet. Během dobíjení nereaguje na žádné zprávy. Až skončí, informuje server a pokračuje v činnosti tam, kde přestal před dobíjením. Pokud robot neukončí dobíjení do časového intervalu TIMEOUT_RECHARGING, server ukončí spojení. 
+</p>
+<pre class="code">Klient                    Server
+------------------------------------------
+                  &lt;---    SERVER_USER
+CLIENT_USER       ---&gt;
+                  &lt;---    SERVER_PASSWORD
+CLIENT_RECHARGING ---&gt;
+
+      ...
+
+CLIENT_FULL_POWER ---&gt;
+CLIENT_PASSWORD   ---&gt;
+                  &lt;---    SERVER_OK
+                            nebo
+                          SERVER_LOGIN_FAILED
+                    .
+                    .
+                    .</pre>
+<p>
+Další ukázka:
+</p>
+<pre class="code">Klient                  Server
+------------------------------------------
+                    .
+                    .
+                    .
+                  &lt;---    SERVER_MOVE
+CLIENT_CONFIRM    ---&gt;
+CLIENT_RECHARGING ---&gt;
+
+      ...
+
+CLIENT_FULL_POWER ---&gt;
+                &lt;---    SERVER_MOVE
+CLIENT_CONFIRM  ---&gt;
+                  .
+                  .
+                  .</pre>
+</div>
+
+<h2><a name="chybove_situace" id="chybove_situace">Chybové situace</a></h2>
+<div class="level2">
+
+<p>
+
+Někteří roboti mohou mít poškozený firmware a tak mohou komunikovat špatně. Server by měl toto nevhodné chování detekovat a správně zareagovat.
+</p>
+
+</div>
+
+<h3><a name="chyba_pri_autentizaci" id="chyba_pri_autentizaci">Chyba při autentizaci</a></h3>
+<div class="level3">
+
+<p>
+
+Server reaguje na chybnou autentizaci zprávou SERVER_LOGIN_FAILED. Tato zpráva je poslána pouze po té, co server přijme validní zprávu s uživatelským jménem + validní zprávu s uživatelským heslem a heslo neodpovídá uživatelskému jménu. (Validní == syntakticky korektní) V jiné situaci server zprávu SERVER_LOGIN_FAILED poslat nesmí.
+</p>
+
+</div>
+
+<h3><a name="syntakticka_chyba" id="syntakticka_chyba">Syntaktická chyba</a></h3>
+<div class="level3">
+
+<p>
+
+Na syntaktickou chybu reagauje server vždy okamžitě po obdržení zprávy, ve které chybu detekoval. Server pošle robotovi zprávu SERVER_SYNTAX_ERROR a pak musí co nejdříve ukončit spojení. Syntakticky nekorektní zprávy:
+
+</p>
+<ul>
+<li class="level1"><div class="li">
+ Příchozí zpráva je delší než počet znaků definovaný pro každou zprávu (včetně ukončovacích znaků \r\n). Délky zpráv jsou definovány v tabulce s přehledem zpráv od klienta.
+</div></li>
+<li class="level1"><div class="li">
+ Příchozí zpráva syntakticky neodpovídá ani jedné ze zpráv CLIENT_CONFIRM, CLIENT_RECHARGING a CLIENT_FULL_POWER.
+</div></li>
+</ul>
+
+
+<p>
+
+Každá příchozí zpráva je testována na maximální velikost a pouze zprávy CLIENT_PASSWORD, CLIENT_CONFIRM, CLIENT_RECHARGING a CLIENT_FULL_POWER jsou testovany na jejich obsah (zprávy CLIENT_USER a CLIENT_MESSAGE mohou obsahovat cokoliv).
+</p>
+
+</div>
+
+<h3><a name="logicka_chyba" id="logicka_chyba">Logická chyba</a></h3>
+<div class="level3">
+
+<p>
+
+Logická chyba nastane pouze v jednom případě - když robot pošle info o dobíjení (CLIENT_RECHARGING) a po té pošle jakoukoliv jinou zprávu než CLIENT_FULL_POWER. Server na tuto chybu reaguje odesláním zprávy SERVER_LOGIC_ERROR a okamžitým ukončením spojení.
+</p>
+
+</div>
+
+<h3><a name="timeout" id="timeout">Timeout</a></h3>
+<div class="level3">
+
+<p>
+
+Protokol pro komunikaci s roboty obsahuje dva typy timeoutu:
+
+</p>
+<ul>
+<li class="level1"><div class="li">
+ TIMEOUT - timeout pro komunikaci. Pokud robot nebo server neobdrží od své protistrany zprávu po dobu tohoto časového intervalu, považují spojení za ztracené a okamžitě ho ukončí.
+</div></li>
+<li class="level1"><div class="li">
+ TIMEOUT_RECHARGING - timeout pro dobíjení robota. Po té, co server přijme zprávu CLIENT_RECHARGING, musí robot nejpozději do tohoto časového intervalu odeslat zprávu CLIENT_FULL_POWER. Pokud to robot nestihne, server musí okamžitě ukončit spojení.
+</div></li>
+</ul>
+
+
+</div>
+
+<h2><a name="specialni_situace" id="specialni_situace">Speciální situace</a></h2>
+<div class="level2">
+
+<p>
+
+Při komunikaci přes komplikovanější síťovou infrastrukturu může docházet ke dvěma situacím:
+
+</p>
+<ul>
+<li class="level1"><div class="li">
+ Zpráva může dorazit rozdělena na několik částí, které jsou ze socketu čteny postupně. (K tomu dochází kvůli segmentaci a případnému zdržení některých segmentů při cestě sítí.)
+</div></li>
+<li class="level1"><div class="li">
+ Zprávy odeslané brzy po sobě mohou dorazit téměř současně. Při jednom čtení ze socketu mohou být načteny obě najednou. (Tohle se stane, když server nestihne z bufferu načíst první zprávu dříve než dorazí zpráva druhá.)
+</div></li>
+</ul>
+
+
+<p>
+
+Za použití přímého spojení mezi serverem a roboty v kombinaci s výkonným hardwarem nemůže k těmto situacím dojít přirozeně, takže jsou testovačem vytvářeny uměle. V některých testech jsou obě situace kombinovány.
+</p>
+
+<p>
+Každý správně implementovaný server by se měl umět s touto situací vyrovnat. Firmwary robotů s tímto faktem počítají a dokonce ho rády zneužívají. Pokud se v protokolu vyskytuje situace, kdy mají zprávy od robota předem dané pořadí, jsou v tomto pořadí odeslány najednou. To umožňuje sondám snížit jejich spotřebu a zjednodušuje to implementaci protokolu (z jejich pohledu).
+</p>
+
+</div>
+
+<h2><a name="optimalizace_serveru" id="optimalizace_serveru">Optimalizace serveru</a></h2>
+<div class="level2">
+
+<p>
+
+Server optimalizuje protokol tak, že nečeká na dokončení zprávy, která je očividně špatná. Například na výzvu k autorizaci pošle robot pouze část zprávy s uživatelským jménem. Server obdrží např. 120 znaků uživatelského jména, ale stále neobdržel ukončovací sekvenci \r\n. Vzhledem k tomu, že maximální délka zprávy je 100 znaků, je jasné, že přijímaná zpráva nemůže být validní. Server tedy zareaguje tak, že nečeká na zbytek zprávy, ale pošle zprávu SERVER_SYNTAX_ERROR a ukončí spojení. V principu by měl postupovat stejně při vyzvedávání tajného vzkazu. 
+</p>
+
+<p>
+V případě části komunikace, ve které se robot naviguje k cílovým souřadnicím očekává tři možné zprávy: CLIENT_CONFIRM, CLIENT_RECHARGIN nebo CLIENT_FULL_POWER. Pokud server načte část neúplné zprávy a tato část je delší než maximální délka těchto zpráv, pošle SERVER_SYNTAX_ERROR a ukončí spojení. Pro pomoc při optimalizaci je u každé zprávy v tabulce uvedena její maximální velikost.
+</p>
+
+</div>
+
+<h2><a name="ukazka_komunikace" id="ukazka_komunikace">Ukázka komunikace</a></h2>
+<div class="level2">
+<pre class="code">S: 100 LOGIN\r\n
+C: Haf\r\n
+S: 101 PASSWORD\r\n
+C: 271\r\n
+S: 200 OK\r\n
+S: 102 MOVE\r\n
+C: OK 0 1\r\n
+S: 102 MOVE\r\n
+C: OK 1 1\r\n
+S: 104 TURN RIGHT\r\n
+C: OK 1 1\r\n
+S: 102 MOVE\r\n
+C: OK 1 0\r\n
+S: 104 TURN RIGHT\r\n
+C: OK 1 0\r\n
+S: 102 MOVE\r\n
+C: OK 0 0\r\n
+S: 105 GET MESSAGE\r\n
+C: Tajny vzkaz.\r\n
+S: 200 OK\r\n</pre>
+
+</div>
+
+<h2><a name="testovani" id="testovani">Testování</a></h2>
+<div class="level2">
+
+<p>
+
+K testování je připraven obraz operačního systému Tiny Core Linux, který obsahuje tester domácí úlohy. Obraz je kompatibilní s aplikací VirtualBox. 
+</p>
+
+</div>
+
+<h3><a name="tester" id="tester">Tester</a></h3>
+<div class="level3">
+
+<p>
+
+Stáhněte a rozbalte obraz. Výsledný soubor spusťte ve VirtualBoxu. Po spuštění a nabootování je okamžitě k dispozici shell. Tester se spouští příkazem <em>tester</em>:
+
+</p>
+<pre class="code">tester &lt;číslo portu&gt; &lt;vzdálená adresa&gt; [čísla testů]</pre>
+
+<p>
+
+Prvním parametrem je číslo portu, na kterém bude naslouchat váš server. Následuje parametr se vzdálenou adresou serveru. Pokud je váš server spuštěn na stejném počítači jako VirtualBox, použijte adresu defaultní brány. Postup je naznačen na následujícím obrázku:
+</p>
+
+<p>
+<a href="https://edux.fit.cvut.cz/courses/BI-PSI/_detail/labs/bi-psi_2016_task1_v1.png?id=labs%3Atask1" class="media" title="labs:bi-psi_2016_task1_v1.png"><img src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/bi-psi_2016_task1_v1.png" class="media" alt=""></a>
+</p>
+
+<p>
+Výstup je poměrně dlouhý, proto je výhodné přesměrovat jej příkazu <em>less</em>, ve kterém se lze dobře pohybovat.
+</p>
+
+<p>
+Pokud není zadáno číslo testu, spustí se postupně všechny testy. Testy lze spouštět i jednotlivě. Následující ukázka spustí testy 2, 3 a 8:
+
+</p>
+<pre class="code">tester 3999 10.0.2.2 2 3 8 | less</pre>
+
+</div>
+
+<h4><a name="mozne_problemy_v_operacnim_systemu_windows" id="mozne_problemy_v_operacnim_systemu_windows">Možné problémy v operačním systému windows</a></h4>
+<div class="level4">
+
+<p>
+
+V některých instalací <acronym title="Operating System">OS</acronym> Windows bývá problém se standardní konfigurací virtuálního stroje. Pokud se nedaří spojit tester ve virtuálce s testovaným serverem v hostitelském operačním systému, tak použijte následující postup:
+
+</p>
+<ul>
+<li class="level1"><div class="li">
+ U vypnuté virtuálky s testerem změňte nastavení síťového adaptéru z NAT na Host-only network. 
+</div></li>
+<li class="level1"><div class="li">
+ V hostitelském <acronym title="Operating System">OS</acronym> by se mělo objevit síťové rozhraní patřící VirtualBoxu. To lze zjistit z příkazové řádky příkazem <em>ipconfig</em>. IP adresa tohoto rozhraní bude pravděpodobně 192.168.56.1/24.
+</div></li>
+<li class="level1"><div class="li">
+ Ve virtuálce s testerem je teď nutné ručně nastavit IP adresu síťovému rozhraní eth0: 
+</div></li>
+</ul>
+
+
+<p>
+  sudo ifconfig eth0 192.168.56.2 netmask 255.255.255.0
+</p>
+<ul>
+<li class="level1"><div class="li">
+ Nyní je možné spustit tester, ale jako cílovou adresu zadejte IP adresu síťového rozhraní v hostitelském <acronym title="Operating System">OS</acronym>: 
+</div></li>
+</ul>
+
+
+<p>
+  tester 3999 192.168.56.1
+</p>
+
+</div>
+
+<h3><a name="prehled_testu" id="prehled_testu">Přehled testů</a></h3>
+<div class="level3">
+
+</div>
+
+<h4><a name="idealni_situace" id="idealni_situace">Ideální situace</a></h4>
+<div class="level4">
+
+<p>
+
+Test 1 pošle validní data pro autentizaci a jeho robot se po prvním pohybu nachází na cílových souřadnicích a očekává vyzvednutí tajného vzkazu.
+</p>
+
+</div>
+
+<h4><a name="kontrola_autentizace" id="kontrola_autentizace">Kontrola autentizace</a></h4>
+<div class="level4">
+
+<p>
+
+Testy 2 až 4 ověřují, zda server správně kontroluje chyby při autentizaci. (Špatné heslo, speciální znaky v uživatelském jméně…)
+</p>
+
+</div>
+
+<h4><a name="kontrola_osetreni_specialnich_situaci" id="kontrola_osetreni_specialnich_situaci">Kontrola ošetření speciálních situací</a></h4>
+<div class="level4">
+
+<p>
+
+Testy 5 až 7 kontrolují správné reakce na speciální situace (segmentace a spojování zpráv).
+</p>
+
+</div>
+
+<h4><a name="kontrola_detekce_syntaktickych_chyb" id="kontrola_detekce_syntaktickych_chyb">Kontrola detekce syntaktických chyb</a></h4>
+<div class="level4">
+
+<p>
+
+Testy 8 až 14 ověřují detekci syntaktických chyb.
+</p>
+
+</div>
+
+<h4><a name="kontrola_detekce_komunikacniho_timeoutu" id="kontrola_detekce_komunikacniho_timeoutu">Kontrola detekce komunikačního timeoutu</a></h4>
+<div class="level4">
+
+<p>
+
+Testy 15 a 16 ověřují, zda server odhalil timeout a ukončil spojení.
+</p>
+
+</div>
+
+<h4><a name="kontrola_optimalizace_serveru" id="kontrola_optimalizace_serveru">Kontrola optimalizace serveru</a></h4>
+<div class="level4">
+
+<p>
+
+Testy 17 až 21 kontrolují, zda je server správně optimalizován.
+</p>
+
+</div>
+
+<h4><a name="kontrola_navigace_robota" id="kontrola_navigace_robota">Kontrola navigace robota</a></h4>
+<div class="level4">
+
+<p>
+
+Testy 20 až 24 kontrolují, zda server dokáže navést robota do cíle. Pozor! Roboti mohou chybovat a občas neprovedou posun vpřed.
+</p>
+
+</div>
+
+<h4><a name="kontrola_reakce_na_dobijeni_robota" id="kontrola_reakce_na_dobijeni_robota">Kontrola reakce na dobíjení robota</a></h4>
+<div class="level4">
+
+<p>
+
+Testy 25 až 28 kontrolují, zda server správně reaguje na dobíjení robota.
+</p>
+
+</div>
+
+<h4><a name="kontrola_paralelniho_zpracovani" id="kontrola_paralelniho_zpracovani">Kontrola paralelního zpracování</a></h4>
+<div class="level4">
+
+<p>
+
+Test 29 spustí tři testovací instance paralelně.
+</p>
+
+</div>
+
+<h4><a name="testovani_nahodne_generovanymi_situacemi" id="testovani_nahodne_generovanymi_situacemi">Testování náhodně generovanými situacemi</a></h4>
+<div class="level4">
+
+<p>
+
+Test 30 vytváří validní, ale náhodně generovanou komunikaci. Tento test je použit při finálním testu.
+</p>
+
+</div>
+
+<h4><a name="konecna_kontrola" id="konecna_kontrola">Konečná kontrola</a></h4>
+<div class="level4">
+
+<p>
+
+Tento test se spustí automaticky po úspěšném dokončení všech předchozích testů. Spustí se paralelně 3 instance testu 30.
+</p>
+
+</div>
+
+<h3><a name="ke_stazeni" id="ke_stazeni">Ke stažení</a></h3>
+<div class="level3">
+
+<p>
+
+Aplikace VirtualBox: <a href="https://www.virtualbox.org/wiki/Downloads" class="urlextern" target="_blank" title="https://www.virtualbox.org/wiki/Downloads" rel="nofollow">https://www.virtualbox.org/wiki/Downloads</a>
+</p>
+
+<p>
+Obraz s testerm: <a href="https://edux.fit.cvut.cz/courses/BI-PSI/_media/labs/bi-psi_2017_task1_v1.ova.zip" class="media mediafile mf_zip" title="labs:bi-psi_2017_task1_v1.ova.zip">bi-psi_2017_task1_v1.ova.zip</a>
+</p>
+
+<p>
+Binárka testeru pro linux: <a href="https://edux.fit.cvut.cz/courses/BI-PSI/_media/labs/psi-t1-tester_2017.tar.bz2" class="media mediafile mf_bz2" title="labs:psi-t1-tester_2017.tar.bz2">psi-t1-tester_2017.tar.bz2</a>
+</p>
+
+<p>
+Binárka testeru pro linux (64-bitová verze): <a href="https://edux.fit.cvut.cz/courses/BI-PSI/_media/labs/psi-t1-tester_2017_x64.tar.bz2" class="media mediafile mf_bz2" title="labs:psi-t1-tester_2017_x64.tar.bz2">psi-t1-tester_2017_x64.tar.bz2</a>
+</p>
+
+</div>
+
+<h2><a name="pozadavky_na_reseni" id="pozadavky_na_reseni">Požadavky na řešení</a></h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li">
+ Řešení lze vytvořit v jakémkoliv programovacím jazyce, který implementuje rozhraní socketů. Pro čtení a pro zápis do socketu musí být použita funkce nebo metoda <em>receive</em><em>/send</em>. V jazyce Java je možné použít streamované čtení a zápis přímo na socketu. Pokud si nejste jisti, napište zodpovědné osobě: viktor.cerny@fit.cvut.cz
+</div></li>
+<li class="level1"><div class="li">
+ Přijato bude pouze řešení, které projde všemi testy. 
+</div></li>
+</ul>
+
+
+</div>
+
+<h2><a name="odevzdani" id="odevzdani">Odevzdání</a></h2>
+<div class="level2">
+
+<p>
+
+Úloha je úspěšně odevzdána pouze v případě, že byl zdrojový kód nahrán na odevzdávací server a řešení bylo osobně odprezentováno na laboratorním cvičení! Datum odevzdání je určeno uploadem na odevzdávací server, prezentovat úlohu je tedy možné i po deadline a bez penalizace.
+</p>
+
+</div>
+
+<h3><a name="nahrani_na_archivacni_server" id="nahrani_na_archivacni_server">Náhrání na archivační server</a></h3>
+<div class="level3">
+
+<p>
+
+K odevzdávání slouží speciální server (PSI bouda). Každý student se na něm registruje a ve vlastním zájmu bude nahrávat svá průběžná řešení. Na konci semestru budou všechny odevzdané zdrojové kódy otestovány na duplicitu. V případě shody dvou a více kódů mohou průběžná odevzdání pomoci odhalit viníka. <strong>Zdrojový kód se nahrává v jednom souboru a nekomprimovaný!!!</strong> Odevzdávací server kód nekontroluje, pouze jej porovnává s kódy ostatních studentů a vyhledává shodu. 
+</p>
+
+<p>
+</p><p></p><div class="notetip">Pište svůj kód do jediného souboru. Velmi Vám to ulehčí odevzdání.
+</div><p></p>
+<p></p>
+
+<p>
+</p><p></p><div class="notetip">Pokud máte řešení rozdělené do více souborů, stačí když jejich obsah spojíte do jednoho. Výsledný soubor nemusí být kompilovatelný, ale musí obsahovat veškerý zdrojový kód vašeho řešení.
+</div><p></p>
+<p></p>
+
+<p>
+
+Link na odevzdávací server: <a href="https://bouda.felk.cvut.cz/" class="urlextern" target="_blank" title="https://bouda.felk.cvut.cz" rel="nofollow">PSI bouda</a>
+</p>
+
+</div>
+
+<h3><a name="osobni_prezentace" id="osobni_prezentace">Osobní prezentace</a></h3>
+<div class="level3">
+
+<p>
+
+Probíhá na laboratorním cvičení. Student během prezentace musí prokázat, že kódu rozumí a že kód funguje. Kód, který je prezentován, musí být stejný jako ten odevzdaný na odevzdávací server. Kontrola probíhá v následujících krocích:
+
+</p>
+<ol>
+<li class="level1"><div class="li">
+ Student ukáže zdrojový kód a spustí test tak, aby bylo zřejmé, že je testován prezentovaný kód.
+</div></li>
+<li class="level1"><div class="li">
+ Student odpoví na kontrolní otázky ke zdrojovému kódu.
+</div></li>
+<li class="level1"><div class="li">
+ Student nahraje zdrojový kód na odevzdávací server tak, aby bylo zřejmé, že nahrává opravdu prezentovaný kód.
+</div></li>
+</ol>
+
+
+<p>
+
+Je na každém studentovi, aby zajistil hladký průběh všech těchto kroků. Student zavolá cvičícího k prezentaci až po té, co je na ni připraven. 
+</p>
+
+</div>
+
+    <!-- wikipage stop -->
+  </div>
+
+  <div class="clearer">&nbsp;</div>
+
+  
+  <div class="stylefoot">
+
+    <div class="meta">
+      <div class="user">
+        Přihlášen(a) jako: koutnja1 (koutnja1)      </div>
+      <div class="doc">
+        /mnt/www/courses/BI-PSI/data/pages/labs/task1.txt · Poslední úprava: 2017/04/06 20:29 autor: cernyvi2      </div>
+    </div>
+
+   
+    <div class="bar" id="bar__bottom">
+      <div class="bar-left" id="bar__bottomleft">
+                <form class="button btn_revs" method="get" action="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1"><div class="no"><input type="hidden" name="do" value="revisions"><input type="submit" value="Starší verze" class="button" accesskey="o" title="Starší verze [O]"></div></form>      </div>
+      <div class="bar-right" id="bar__bottomright">
+                        <form class="button btn_profile" method="get" action="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1"><div class="no"><input type="hidden" name="do" value="profile"><input type="submit" value="Upravit profil" class="button" title="Upravit profil"></div></form>        <form class="button btn_logout" method="get" action="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1"><div class="no"><input type="hidden" name="do" value="logout"><input type="hidden" name="sectok" value="26d801f63971c251c1c66dddd98a09e7"><input type="submit" value="Odhlásit se" class="button" title="Odhlásit se"></div></form>        <form class="button btn_index" method="get" action="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1"><div class="no"><input type="hidden" name="do" value="index"><input type="submit" value="Index" class="button" accesskey="x" title="Index [X]"></div></form>        <a class="nolink" href="https://edux.fit.cvut.cz/courses/BI-PSI/labs/task1#dokuwiki__top"><input type="button" class="button" value="Nahoru" onclick="window.scrollTo(0, 0)" title="Nahoru"></a>&nbsp;
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footerinc">
+
+  <a target="_blank" href="https://edux.fit.cvut.cz/courses/BI-PSI/feed.php" title="Recent changes RSS feed"><img src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/button-rss.png" width="80" height="15" alt="Recent changes RSS feed"></a>
+
+  <!-- <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/" rel="license" title="Creative Commons License"><img src="/courses/BI-PSI/lib/tpl/edux/images/button-cc.gif" width="80" height="15" alt="Creative Commons License" /></a> -->
+
+  <!-- <a target="_blank" href="https://www.paypal.com/xclick/business=andi%40splitbrain.org&amp;item_name=DokuWiki+Donation&amp;no_shipping=1&amp;no_note=1&amp;tax=0&amp;currency_code=EUR&amp;lc=US" title="Donate"><img src="/courses/BI-PSI/lib/tpl/edux/images/button-donate.gif" alt="Donate" width="80" height="15" /></a>-->
+
+  <a target="_blank" href="http://www.php.net/" title="Powered by PHP"><img src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/button-php.gif" width="80" height="15" alt="Powered by PHP"></a>
+
+  <a target="_blank" href="http://validator.w3.org/check/referer" title="Valid XHTML 1.0"><img src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/button-xhtml.png" width="80" height="15" alt="Valid XHTML 1.0"></a>
+
+  <a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer" title="Valid CSS"><img src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/button-css.png" width="80" height="15" alt="Valid CSS"></a>
+
+  <a target="_blank" href="http://wiki.splitbrain.org/wiki:dokuwiki" title="Driven by DokuWiki"><img src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/button-dw.png" width="80" height="15" alt="Driven by DokuWiki"></a>
+
+
+
+<!--
+
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+   <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+   <license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.0/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.0/">
+   <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+   <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+   <requires rdf:resource="http://web.resource.org/cc/Notice" />
+   <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+   <prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+   <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+   <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+
+
+</div>
+
+<div class="no"><img src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/indexer.php" width="1" height="1" alt=""></div>
+
+
+<div id="gallery__overlay" style="display: none; position: fixed; top: 0px; left: 0px; z-index: 50; width: 100%; height: 100%;"><img id="gallery__loadingImage" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/loading.gif" style="position: relative; cursor: pointer;"></div><div id="gallery__lightbox" style="display: none; position: absolute; z-index: 60;"><img id="gallery__lightboxImage" style="cursor: pointer;"><img id="gallery__actionImage" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/expand.gif" style="display: none; position: absolute; top: 15px; left: 15px; z-index: 70; cursor: pointer;"><img id="gallery__closeButton" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/close.gif" style="display: inline; position: absolute; right: 10px; top: 10px; z-index: 80; cursor: pointer;"><img id="gallery__nextButton" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/next.gif" style="display: inline; position: absolute; right: 10px; bottom: 10px; z-index: 80; cursor: pointer;"><img id="gallery__prevButton" src="./Domácí úloha č. 1 - TCP server [BI-PSI Počítačové sítě]_files/prev.gif" style="display: inline; position: absolute; left: 10px; bottom: 10px; z-index: 80; cursor: pointer;"><span id="gallery__lightboxCaption" style="display: none; position: absolute; z-index: 80;"></span></div><div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-helper-hidden-accessible"></div><div class="integration-bar" style="display: none; top: 74.1428px; left: 1650px;"><div class="arrow" style="left: 270.363px;"></div><a class="tile" href="https://timetable.fit.cvut.cz/"><span class="icon"><i class="fa fa-calendar"></i></span><span class="title">Rozvrh</span></a><a class="tile" href="https://ict.fit.cvut.cz/web"><span class="icon"><i class="icon-th"></i></span><span class="title">Informace o ICT</span></a><a class="tile" href="https://imap.fit.cvut.cz/"><span class="icon"><i class="fa fa-envelope"></i></span><span class="title">Webmail</span></a><a class="tile" href="https://kos.cvut.cz/"><span class="icon"><i class="icon-th"></i></span><span class="title">KOmponenta Studium</span></a></div></body></html>
